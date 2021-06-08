@@ -8,7 +8,7 @@ namespace AdoReporting.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    // [EnableCors("SpecificOrigin")]
+    //[EnableCors("SpecificOrigin")]
     public class AdoDataController : ControllerBase
     {
         private readonly ILogger<AdoDataController> _logger;
@@ -21,22 +21,29 @@ namespace AdoReporting.Controllers
         }
 
         [HttpGet]
+        [Route("{projectName}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult Get(string projectName)
+        public ActionResult GetAdoWorkItems(string projectName)
         {
             try
             {
-                var data = _queryExecutor.GetWorkItemHierarchy(projectName);
+                if (!string.IsNullOrWhiteSpace(projectName))
+                {
+                    var data = _queryExecutor.GetWorkItemHierarchy(projectName).Result;
+                    return Ok(data);
+                }
+                else
+                    throw new ArgumentNullException();
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
                 throw;
             }
-            return Ok();
         }
 
         [HttpPost]
+        [Route("{id}/{title}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult UpdateWorkItem(int id, string title)
         {

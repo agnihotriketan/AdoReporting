@@ -11,7 +11,7 @@ namespace AdoReporting.Test
         private readonly IQueryExecutor _queryExecutor;
         public QueryExecutorTest()
         {
-            _queryExecutor = new QueryExecutor("https://dev.azure.com/", "keagniho", "apxduwl2ruk6ncvxpw23w4egdphyyow54qw7zq4ie6pk4zpbuvkq");
+            _queryExecutor = new QueryExecutor("https://dev.azure.com/", "keagniho", "DEleted");
         }
 
         [TestMethod]

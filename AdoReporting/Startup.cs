@@ -19,13 +19,16 @@ namespace AdoReporting
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers(options =>
-            {
-                options.RespectBrowserAcceptHeader = true;
-            }).AddJsonOptions(jsonOption =>
-            {
-                jsonOption.JsonSerializerOptions.PropertyNamingPolicy = null;
-            });
+            //services.AddControllers(options =>
+            //{
+            //    options.RespectBrowserAcceptHeader = true;
+            //}).AddJsonOptions(jsonOption =>
+            //{
+            //    jsonOption.JsonSerializerOptions.PropertyNamingPolicy = null;
+            //}); 
+            services.AddControllers().AddNewtonsoftJson(options =>
+     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddSingleton<IQueryExecutor, QueryExecutor>(serviceProvider =>
             {
                 string adoUrl = Configuration.GetValue<string>("AdoSettings:AdoUrl");
