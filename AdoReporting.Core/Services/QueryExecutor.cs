@@ -72,6 +72,12 @@ namespace AdoReporting.Core.Services
             return null;
         }
 
+        /// <summary>
+        /// Update Work Item
+        /// </summary>
+        /// <param name="workItemId">The work item id.</param>
+        /// <param name="title">The title.</param>
+        /// <returns></returns>
         public bool UpdateWorkItem(int workItemId, string title)
         {
             try
