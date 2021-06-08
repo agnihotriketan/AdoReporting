@@ -15,7 +15,7 @@ namespace AdoReporting.Console
             queryExecutor = GetQueryExecutor();
         }
 
-        static void Main(string[] args)
+        static async System.Threading.Tasks.Task Main(string[] args)
         {
             try
             { 
@@ -28,7 +28,7 @@ namespace AdoReporting.Console
                     switch (choice)
                     {
                         case 1:
-                            var response = queryExecutor.GetWorkItemHierarchy("Agile Demo");
+                            var response = await queryExecutor.GetWorkItemHierarchy("Agile Demo");
                             break;
                         case 2:
                             System.Console.WriteLine("Please enter work item id : ");
